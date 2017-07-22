@@ -4,10 +4,18 @@ import './App.css'
 import CurrentlyReading from './CurrentlyReading'
 import WantToRead from './WantToRead'
 import AlreadyRead from './AlreadyRead'
+import AllMyBooks from './AllMyBooks'
 
 class BooksApp extends React.Component {
   state = {
+    books:[],
     showSearchPage: true
+  }
+
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+    })
   }
 
   render() {
@@ -31,6 +39,7 @@ class BooksApp extends React.Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
+                <AllMyBooks books={this.state.books}/>
                 <CurrentlyReading/>
                 <WantToRead/>
                 <AlreadyRead/>
