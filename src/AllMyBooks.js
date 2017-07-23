@@ -5,7 +5,7 @@ class AllMyBooks extends Component {
 			const { books } = this.props
       return (
         <div className="bookshelf">
-          <h2 className="bookshelf-title">{this.props.ThisShelf}</h2>
+          <h2 className="bookshelf-title">{this.props.ShelfName}</h2>
           <div className="bookshelf-books">
             <ol className="books-grid">
               {books

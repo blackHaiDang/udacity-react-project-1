@@ -36,9 +36,9 @@ class BooksApp extends React.Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-                <AllMyBooks ThisShelf="currentlyReading" books={this.state.books}/>
-                <AllMyBooks ThisShelf="read" books={this.state.books}/>
-                <AllMyBooks ThisShelf="wantToRead" books={this.state.books}/>
+                <AllMyBooks ShelfName="Currently Reading" ThisShelf="currentlyReading" books={this.state.books}/>
+                <AllMyBooks ShelfName="Read" ThisShelf="read" books={this.state.books}/>
+                <AllMyBooks ShelfName="Want To Read" ThisShelf="wantToRead" books={this.state.books}/>
             </div>
             <div className="open-search">
               <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
