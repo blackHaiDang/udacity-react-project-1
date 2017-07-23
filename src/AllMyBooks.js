@@ -5,7 +5,7 @@ class AllMyBooks extends Component {
 			const { books } = this.props
       return (
         <div className="bookshelf">
-          <h2 className="bookshelf-title">All my books</h2>
+          <h2 className="bookshelf-title">Read</h2>
           <div className="bookshelf-books">
             <ol className="books-grid">
               {books.map((book) => (
@@ -32,9 +32,12 @@ class AllMyBooks extends Component {
                     </div>
                     <div className="book-title">{book.title}</div>
                     <div className="book-authors">{book.authors[0]}</div>
+                    <div className="book-shelf">{book.shelf}</div>
                   </div>
                 </li>
-              ))}
+              )).filter((book) => (book.shelf === "currentlyReading"))
+
+            }
             </ol>
         </div>
       </div>
