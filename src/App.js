@@ -1,9 +1,6 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import CurrentlyReading from './CurrentlyReading'
-import WantToRead from './WantToRead'
-import AlreadyRead from './AlreadyRead'
 import AllMyBooks from './AllMyBooks'
 
 class BooksApp extends React.Component {
@@ -39,10 +36,9 @@ class BooksApp extends React.Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-                <AllMyBooks books={this.state.books}/>
-                <CurrentlyReading/>
-                <WantToRead/>
-                <AlreadyRead/>
+                <AllMyBooks ThisShelf="currentlyReading" books={this.state.books}/>
+                <AllMyBooks ThisShelf="read" books={this.state.books}/>
+                <AllMyBooks ThisShelf="wantToRead" books={this.state.books}/>
             </div>
             <div className="open-search">
               <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
