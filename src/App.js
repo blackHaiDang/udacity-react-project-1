@@ -1,19 +1,37 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import AllMyBooks from './AllMyBooks'
+import EachShelf from './EachShelf'
 
 class BooksApp extends React.Component {
   state = {
-    books:[],
-    showSearchPage: true
+    allShelves:
+      {
+        "currentlyReading": [],
+        "wantToRead": [],
+        "read": []
+      },
+    showSearchPage: false
   }
 
+  // shelvesDico = {
+  //   currentlyReading: "Currently Reading",
+  //   wantToRead: "Want To Read",
+  //   read: "Read"
+  // }
+
   componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState({ books })
-    })
+    // an UPDATE call to place a "dummy" book into the "none" shelf,
+    // so that App only receives the book IDs for each shelf.
+    BooksAPI.update({id: 'dummy'}, 'none')
+      .then((allShelves) => this.updateShelf(allShelves))
   }
+
+  updateShelf(allShelves){
+    this.setState({
+      'allShelves': allShelves,
+      'showSearchPage': false})
+    }
 
   render() {
     return (
@@ -36,9 +54,9 @@ class BooksApp extends React.Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-                <AllMyBooks ShelfName="Currently Reading" ThisShelf="currentlyReading" books={this.state.books}/>
-                <AllMyBooks ShelfName="Read" ThisShelf="read" books={this.state.books}/>
-                <AllMyBooks ShelfName="Want To Read" ThisShelf="wantToRead" books={this.state.books}/>
+                <EachShelf ShelfName="Currently Reading" ThisShelf={this.state.allShelves.currentlyReading}/>
+                <EachShelf ShelfName="Want To Read" ThisShelf={this.state.allShelves.wantToRead}/>
+                <EachShelf ShelfName="Read" ThisShelf={this.state.allShelves.read}/>
             </div>
             <div className="open-search">
               <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
