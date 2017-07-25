@@ -23,13 +23,14 @@ class BooksApp extends React.Component {
   componentDidMount() {
     // an UPDATE call to place a "dummy" book into the "none" shelf,
     // so that App only receives the book IDs for each shelf.
-    BooksAPI.update({id: 'dummy'}, 'none')
+    BooksAPI
+      .update({id: 'dummy'}, 'none')
       .then((allShelves) => this.updateShelf(allShelves))
   }
 
-  updateShelf(allShelves){
+  updateShelf = (shelvesObject) => {
     this.setState({
-      'allShelves': allShelves,
+      'allShelves': shelvesObject,
       'showSearchPage': false})
     }
 
@@ -54,9 +55,9 @@ class BooksApp extends React.Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-                <EachShelf ShelfName="Currently Reading" ThisShelf={this.state.allShelves.currentlyReading}/>
-                <EachShelf ShelfName="Want To Read" ThisShelf={this.state.allShelves.wantToRead}/>
-                <EachShelf ShelfName="Read" ThisShelf={this.state.allShelves.read}/>
+                <EachShelf updateShelf={this.updateShelf} ShelfName="Currently Reading" ThisShelf={this.state.allShelves.currentlyReading}/>
+                <EachShelf updateShelf={this.updateShelf} ShelfName="Want To Read" ThisShelf={this.state.allShelves.wantToRead}/>
+                <EachShelf updateShelf={this.updateShelf} ShelfName="Read" ThisShelf={this.state.allShelves.read}/>
             </div>
             <div className="open-search">
               <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
