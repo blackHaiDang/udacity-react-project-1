@@ -12,8 +12,7 @@ class BooksApp extends React.Component {
         "currentlyReading": [],
         "wantToRead": [],
         "read": []
-      },
-    showSearchPage: false
+      }
   }
 
   // shelvesDico = {
