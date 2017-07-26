@@ -12,6 +12,7 @@ class EachShelf extends Component {
               <li key={id}> <BookComponent updateShelf={this.props.updateShelf} id={id}/></li>
             ))
           }
+          {/* {console.log("ThisShelf:" + this.props.ThisShelf)} */}
           </ol>
       </div>
     </div>

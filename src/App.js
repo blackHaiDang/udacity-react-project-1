@@ -2,66 +2,81 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import EachShelf from './EachShelf'
-import SearchQuery from './SearchQuery'
+import SearchBar from './SearchBar'
 import { Link } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
-    allShelves:
-      {
-        "currentlyReading": [],
-        "wantToRead": [],
-        "read": []
-      }
-  }
-
-  // shelvesDico = {
-  //   currentlyReading: "Currently Reading",
-  //   wantToRead: "Want To Read",
-  //   read: "Read"
-  // }
+    "currentlyReading": [],
+    "wantToRead": [],
+    "read": [],
+    "searchResults": []
+    }
 
   componentDidMount() {
     // an UPDATE call to place a "dummy" book into the "none" shelf,
     // so that App only receives the book IDs for each shelf.
     BooksAPI
       .update({id: 'dummy'}, 'none')
-      .then((allShelves) => this.updateShelf(allShelves))
+      .then((shelvesObject) => this.updateShelf(shelvesObject))
   }
 
   updateShelf = (shelvesObject) => {
+    // function used hereabove (by initialization) and in ShelfSelector and in SearchBar
     this.setState({
-      'allShelves': shelvesObject,
-      'showSearchPage': false})
-    }
+      "currentlyReading": shelvesObject.currentlyReading,
+      "wantToRead": shelvesObject.wantToRead,
+      "read": shelvesObject.read,
+      "searchResults": shelvesObject.searchResults || []
+    })
+  }
 
   render() {
     return (
       <div className="app">
-
-        <Route path="/new" render={() => (
-          <SearchQuery/>
-        )}/>
-
-        <Route exact path="/" render={() => (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
+        <div className="list-books-title">
+          <h1>MyReads</h1>
+        </div>
+        <div className="list-books">
+          <Route path="/new" render={() => (
+            <div className="random-name">
+              <div className="search-books">
+                <SearchBar
+                  updateShelf={this.updateShelf}/>
+              </div>
+              <div className="search-books-results">
+                <EachShelf
+                  ShelfName="Search Results"
+                  updateShelf={this.updateShelf}
+                  ThisShelf={this.state.searchResults}/>
+              </div>
             </div>
-            <div className="list-books-content">
-                <EachShelf updateShelf={this.updateShelf} ShelfName="Currently Reading" ThisShelf={this.state.allShelves.currentlyReading}/>
-                <EachShelf updateShelf={this.updateShelf} ShelfName="Want To Read" ThisShelf={this.state.allShelves.wantToRead}/>
-                <EachShelf updateShelf={this.updateShelf} ShelfName="Read" ThisShelf={this.state.allShelves.read}/>
+          )}/>
+          <Route exact path="/" render={() => (
+            <div>
+              <div className="list-books-content">
+                  <EachShelf
+                    ShelfName="Currently Reading"
+                    updateShelf={this.updateShelf}
+                    ThisShelf={this.state.currentlyReading}/>
+                  <EachShelf
+                    ShelfName="Want To Read"
+                    updateShelf={this.updateShelf}
+                    ThisShelf={this.state.wantToRead}/>
+                  <EachShelf
+                    ShelfName="Read"
+                    updateShelf={this.updateShelf}
+                    ThisShelf={this.state.read}/>
+              </div>
+              <div className="open-search">
+                <Link
+                  to="/new"
+                  >Add a book</Link>
+              </div>
             </div>
-            <div className="open-search">
-              <Link
-                to="/new"
-                >Add a book</Link>
-            </div>
-          </div>
-        )}/>
-
+          )}/>
+        </div>
       </div>
     )
   }

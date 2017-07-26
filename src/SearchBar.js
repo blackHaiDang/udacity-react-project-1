@@ -1,38 +1,39 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
-import EachShelf from './EachShelf'
 
-class SearchQuery extends Component {
+class SearchBar extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       query: '',
-      searchResults: []
+      previousQuery: ''
     }
   }
 
-  clearQuery = () => {
-    this.setState({ query: ''})
-  }
-
-  updateQuery = (query) => {
-    this.setState({ query: query.trim() }, this.doSearch())
-  }
-
-  // componentDidMount() {
-  //   this.doSearch()
+  // clearQuery = () => {
+  //   this.setState({ query: ''})
   // }
 
-  doSearch = () => {
-    if (this.state.query) {
-    // if (this.state.query.length > 3) {
+  updateQuery = (query) => {
+    this.setState({
+      previousQuery: this.state.query,
+      query: query.trim()
+    })}
+
+  componentDidUpdate() {
+    // console.log("SearchBar did update")
+    // console.log("state.query:" + this.state.query + ", state.previousQuery: " + this.state.previousQuery)
+    // bug how to avoid that the query is done twice the first time
+    // if (this.state.query && (this.state.previousQuery !== this.state.query) ) {
+    if (this.state.query && (this.state.previousQuery !== this.state.query) ) {
       BooksAPI.search(this.state.query, 5)
         .then((res) => res.map((book) => (book.id)))
-        .then((res) => [...new Set(res)])
-        .then((res) => (this.setState({searchResults: res})))
-        .catch((e) => console.log(e))
+        .then((res) => [...new Set(res)])       // remove duplicates
+        .then((res) => (this.props.updateShelf( {"searchResults": res} )))
+        .then(() => this.setState({'previousQuery': this.state.query}))
+        // .catch((e) => console.log('error',e))
     }
   }
 
@@ -49,25 +50,19 @@ class SearchQuery extends Component {
     // how to have several keywords with space inbetween?
 
     return (
-      <div className="search-books">
         <div className="search-books-bar">
           <Link to="/" className="close-search" >Close</Link>
+
           <div className="search-books-input-wrapper">
             <input
               type="text"
               placeholder="Search by title or author"
               value={this.state.query}
-              onChange={(event) => this.updateQuery(event.target.value)}/>
+              onChange={(event) => (this.updateQuery(event.target.value))}/>
           </div>
         </div>
-        <div className="search-books-results">
-          <ol className="books-grid">
-            <EachShelf ShelfName="Search Results:" ThisShelf={this.state.searchResults}/>
-          </ol>
-        </div>
-      </div>
-    )
-  }
+      )
+    }
 }
 
-export default SearchQuery
+export default SearchBar
