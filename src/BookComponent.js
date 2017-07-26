@@ -28,7 +28,7 @@ class BookComponent extends Component {
         <div className="book-top">
           <div
             className="book-cover"
-            title={this.props.oneId}
+            title={this.props.id}
             style={{
               width: 128,
               height: 192,

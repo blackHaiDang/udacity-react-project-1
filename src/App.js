@@ -2,6 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import EachShelf from './EachShelf'
+import SearchQuery from './SearchQuery'
 import { Link } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 
@@ -40,17 +41,7 @@ class BooksApp extends React.Component {
       <div className="app">
 
         <Route path="/new" render={() => (
-          <div className="search-books">
-            <div className="search-books-bar">
-              <Link to="/" className="close-search" >Close</Link>
-              <div className="search-books-input-wrapper">
-                <input type="text" placeholder="Search by title or author"/>
-              </div>
-            </div>
-            <div className="search-books-results">
-              <ol className="books-grid"></ol>
-            </div>
-          </div>
+          <SearchQuery/>
         )}/>
 
         <Route exact path="/" render={() => (
