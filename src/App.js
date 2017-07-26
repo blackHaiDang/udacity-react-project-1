@@ -39,7 +39,7 @@ class BooksApp extends React.Component {
           <h1>MyReads</h1>
         </div>
         <div className="list-books">
-          <Route path="/new" render={() => (
+          <Route path="/search" render={() => (
             <div className="random-name">
               <div className="search-books">
                 <SearchBar
@@ -71,7 +71,7 @@ class BooksApp extends React.Component {
               </div>
               <div className="open-search">
                 <Link
-                  to="/new"
+                  to="/search"
                   >Add a book</Link>
               </div>
             </div>
