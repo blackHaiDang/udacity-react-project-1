@@ -12,17 +12,9 @@ class ShelfSelector extends Component {
   handleChange(event) {
     BooksAPI
       .update({'id': this.props.id}, event.target.value)
-      .then(console.log("ShelfSelector: updated status of book " + this.props.id))
+      // .then(console.log("ShelfSelector: updated status of book " + this.props.id))
       .then((shelvesObject) => this.props.updateShelf(shelvesObject))
-      // .then((res) => this.uploadDummy())
   }
-
-  // uploadDummy() {
-  //   BooksAPI
-  //     .update({id: 'dummy'}, 'none')
-  //     .then(console.log("just updated with dummy book"))
-  //     .then((shelvesObject) => this.props.updateShelf(shelvesObject))
-  // }
 
   render() {
     return (

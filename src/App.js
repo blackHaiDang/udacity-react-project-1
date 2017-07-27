@@ -1,5 +1,6 @@
 import React from 'react'
-import {Route, Link, Switch} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom'
+// import {Switch} from 'react-router-dom'
 import './App.css'
 import * as BooksAPI from './BooksAPI'
 import EachShelf from './EachShelf'
@@ -15,19 +16,16 @@ class BooksApp extends React.Component {
     }
 
   componentDidMount() {
-  // componentDidUpdate() {
     // an UPDATE call to place a "dummy" book into the "none" shelf,
-    // so that App only receives the book IDs for each shelf.
+    // so that the App only receives the book IDs for each shelf.
     BooksAPI
       .update({id: 'dummy'}, 'none')
-      .then(console.log("updated with dummy book"))
+      // .then(console.log("Updated with dummy book"))
       .then((shelvesObject) => this.updateShelf(shelvesObject))
   }
 
-
-
   updateShelf = (shelvesObject) => {
-    // function used hereabove (by initialization) and in ShelfSelector and in SearchBar
+    // function used by initialization hereabove, in ShelfSelector and in SearchBar
     this.setState({
       "currentlyReading": shelvesObject.currentlyReading,
       "wantToRead": shelvesObject.wantToRead,
@@ -44,8 +42,8 @@ class BooksApp extends React.Component {
         </div>
         <div className="list-books">
 
-          <Switch>
-            // this section almost same as next, ugly code!
+          {/* <Switch> */}
+
             <Route exact path="/search/" render={() => (
               <div className="random-name">
                 <div className="search-books">
@@ -98,14 +96,12 @@ class BooksApp extends React.Component {
               <div className="open-search">
                 <Link
                   to="/search"
-                  // onClick={console.log("and now, clicked the green cross to add a book")}
-                  // onClick={this.updateShelf}
                   >Add a book</Link>
                 </div>
               </div>
             )}/>
 
-          </Switch>
+          {/* </Switch> */}
 
         </div>
       </div>
