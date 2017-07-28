@@ -1,33 +1,28 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
+import * as Utils from './Utils'
 
 class SearchBar extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      'query': ''
-    }
-  }
-
-  updateQuery = (query) => {
-    console.log("SearchBar: state.query got set")
-    this.setState({
-      'query': query
-    })}
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     'query': ''
+  //   }
+  // }
 
   componentDidMount(){
-    if (this.props.urlQuery && (this.props.urlQuery !== this.state.query))
-      {this.updateQuery(this.props.urlQuery)}
+    if (this.props.urlQuery && (this.props.urlQuery !== this.props.query)) {
+      console.log('component did mount, now updateQuery')
+      this.props.updateQuery(this.props.urlQuery)}
   }
 
   componentDidUpdate(prevProps, prevState){
-      if ((this.state.query && (prevState.query !== this.state.query))) {
-        BooksAPI.search(this.state.query.trim(), '5')
-          .then((res) => res.map((book) => (book.id)))
-          .then((res) => [...new Set(res)])       // remove duplicates
-          .then((res) => (this.props.updateShelf( {'searchResults': res} )))
+    console.log('component did update')
+    if ((this.props.query && (prevProps.query !== this.props.query))) {
+      console.log('doSearch')
+      Utils.doSearch(this.props.query.trim())
+      .then((res) => (this.props.updateShelf( {'searchResults': res} )))
     }
   }
 
@@ -41,8 +36,8 @@ class SearchBar extends Component {
             <input
               type='text'
               placeholder='Search by title or author'
-              value={this.state.query}
-              onChange={(event) => (this.updateQuery(event.target.value))}/>
+              value={this.props.query}
+              onChange={(event) => (this.props.updateQuery(event.target.value))}/>
           </div>
         </div>
       )

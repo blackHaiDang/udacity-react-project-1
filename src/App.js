@@ -6,13 +6,14 @@ import * as BooksAPI from './BooksAPI'
 import EachShelf from './EachShelf'
 import SearchBar from './SearchBar'
 
-
 class BooksApp extends React.Component {
   state = {
-    "currentlyReading": [],
-    "wantToRead": [],
-    "read": [],
-    "searchResults": []
+    // 'test': '/search/',
+    'query': '',
+    'currentlyReading': [],
+    'wantToRead': [],
+    'read': [],
+    'searchResults': []
     }
 
   componentDidMount() {
@@ -22,7 +23,6 @@ class BooksApp extends React.Component {
     // downloading the book details only when they get required.
     BooksAPI
       .update({id: 'dummy'}, 'none')
-      // .then(console.log("Updated with dummy book"))
       .then((shelvesObject) => this.updateShelf(shelvesObject))
   }
 
@@ -35,6 +35,11 @@ class BooksApp extends React.Component {
       "searchResults": shelvesObject.searchResults || []
     })
   }
+
+  updateQuery = (query) => {
+    this.setState({
+      'query': query
+    })}
 
   render() {
     return (
@@ -50,6 +55,8 @@ class BooksApp extends React.Component {
               <div className="random-name">
                 <div className="search-books">
                   <SearchBar
+                    query={this.state.query}
+                    updateQuery={this.updateQuery}
                     updateShelf={this.updateShelf}/>
                 </div>
                 <div className="search-books-results">
@@ -61,13 +68,14 @@ class BooksApp extends React.Component {
               </div>
             )}/>
 
-
             <Route path="/search/:urlQuery" render={({match}) => (
               <div className="random-name">
                 <div className="search-books">
                   <SearchBar
-                    updateShelf={this.updateShelf}
-                    urlQuery={match.params.urlQuery}/>
+                    urlQuery={match.params.urlQuery}
+                    query={this.state.query}
+                    updateQuery={this.updateQuery}
+                    updateShelf={this.updateShelf}/>
                 </div>
                 <div className="search-books-results">
                   <EachShelf
@@ -97,7 +105,7 @@ class BooksApp extends React.Component {
                 </div>
               <div className="open-search">
                 <Link
-                  to="/search"
+                  to={`/search/${this.state.query}`}
                   >Add a book</Link>
                 </div>
               </div>
