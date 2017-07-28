@@ -18,6 +18,8 @@ class BooksApp extends React.Component {
   componentDidMount() {
     // an UPDATE call to place a "dummy" book into the "none" shelf,
     // so that the App only receives the book IDs for each shelf.
+    // In earlier version I was using BooksAPI.getAll, but I prefer
+    // downloading the book details only when they get required.
     BooksAPI
       .update({id: 'dummy'}, 'none')
       // .then(console.log("Updated with dummy book"))

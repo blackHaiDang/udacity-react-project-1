@@ -1,14 +1,12 @@
 
 This is the first student project for the [`React Udacity NanoDegree`] (https://www.udacity.com/course/react-nanodegree--nd019)
 
-## things to improve / things to do / things to try
+## TODO
 - After adding a book from the search page, the search results page becomes empty! And it's even impossible to run the same search again!
-- What would be a better way to implement the search bar? I find it tricky to test 'prevState' against current state, as I do now.
-In another attempts I had the search bar creating an infinite loop (API call -> state update -> API call) because of 'componentDidMount'.
-Maybe try further with 'shouldComponentUpdate'?
+- What would be a better way to implement the search bar? I find it tricky to test 'prevState' against current state, as I do now. In another attempts I had the search bar creating an infinite loop (API call > state update > API call) because of 'componentDidMount'. Maybe try further with 'shouldComponentUpdate'?
 - Show the second author for relevant books!
 - The Search Bar covers the App name!
-- 'Catch' and handle promises errors.
+- 'Catch' and handle promises errors. esp. if api also return 'undefined', 403 http error without returning anything, or "no books" answer, or shelf update of book failed.
 - Currently the search api call is run twice for each search!
 - After a search, not possible to come back to it through browser 'back' button.
 - When showing the search result, we should also update the URL.
@@ -18,11 +16,11 @@ Maybe try further with 'shouldComponentUpdate'?
 - Cannot limit the number of search results in BooksAPI.search, is this a backend issue?
 - In app.js, code isn't elegant, routing sections are mostly repeated between path="/search/" and path="/search/:urlQuery" . Any better way to do this?
 - Use 'proptypes'.
-- Allow for offline browsing of your books.
+- Allow for offline browsing of the books. (persistent storage)
 - Add 'Detailed View' for the books.
 - Use stateless functions instead of classes for the react component whose only method is render(), see lesson 3.3
 - implement testing
-- cancel any request sent and not received when another character is written in the input.
+- debounce search typing input with lodash (https://lodash.com/docs/#throttle)
 
 ## Files
 ```
