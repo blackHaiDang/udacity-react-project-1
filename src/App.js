@@ -75,7 +75,6 @@ class BooksApp extends React.Component {
                     ShelfName="Search Results"
                     updateShelf={this.updateShelf}
                     ThisShelf={this.state.searchResults}/>
-                    {/* searchResults={this.state.searchResults}/> */}
                 </div>
               </div>
             )}/>
@@ -87,17 +86,14 @@ class BooksApp extends React.Component {
                       ShelfName="Currently Reading"
                       updateShelf={this.updateShelf}
                       ThisShelf={this.state.currentlyReading}/>
-                      {/* searchResults={this.state.searchResults}/> */}
                     <EachShelf
                       ShelfName="Want To Read"
                       updateShelf={this.updateShelf}
                       ThisShelf={this.state.wantToRead}/>
-                      {/* searchResults={this.state.searchResults}/> */}
                     <EachShelf
                       ShelfName="Read"
                       updateShelf={this.updateShelf}
                       ThisShelf={this.state.read}/>
-                      {/* searchResults={this.state.searchResults}/> */}
                 </div>
               <div className="open-search">
                 <Link

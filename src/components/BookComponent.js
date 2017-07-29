@@ -36,13 +36,14 @@ class BookComponent extends Component {
             }}>
           </div>
           <ShelfSelector
-            // searchResults={this.props.searchResults}
             updateShelf={this.props.updateShelf}
             shelf={this.state.shelf}
             id={this.state.id}/>
         </div>
         <div className="book-title">{this.state.title}</div>
-        <div className="book-authors">{this.state.authors[0]}</div>
+        <div className="book-authors">
+					{ this.state.authors && this.state.authors.map( (author,index) => (<p key={index}>{author}</p>)) }
+				</div>
       </div>
     )
   }

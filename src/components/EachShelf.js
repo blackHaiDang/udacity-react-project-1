@@ -11,7 +11,6 @@ class EachShelf extends Component {
             {this.props.ThisShelf.map((id) => (
               <li key={id}>
                 <BookComponent
-                  // searchResults={this.props.searchResults}
                   updateShelf={this.props.updateShelf}
                   id={id}/>
               </li>
