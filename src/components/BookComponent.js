@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import * as BooksAPI from '../utils/BooksAPI'
 import ShelfSelector from './ShelfSelector'
 
@@ -47,6 +48,10 @@ class BookComponent extends Component {
       </div>
     )
   }
+}
+
+BookComponent.propTypes = {
+  id: PropTypes.string.isRequired,
 }
 
 export default BookComponent

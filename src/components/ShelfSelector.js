@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import * as BooksAPI from '../utils/BooksAPI'
 
 class ShelfSelector extends Component {
@@ -30,6 +31,12 @@ class ShelfSelector extends Component {
       </div>
     )
   }
+}
+
+ShelfSelector.propTypes = {
+  id: PropTypes.string.isRequired,
+  shelf: PropTypes.string.isRequired,
+  updateShelf: PropTypes.func.isRequired
 }
 
 export default ShelfSelector

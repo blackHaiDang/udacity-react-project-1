@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import * as Utils from '../utils/Utils'
 
@@ -33,6 +34,13 @@ class SearchBar extends Component {
         </div>
       )
     }
+}
+
+SearchBar.propTypes = {
+  query: PropTypes.string.isRequired,
+  urlQuery: PropTypes.string.isRequired,
+  updateQuery: PropTypes.func.isRequired,
+  updateShelf: PropTypes.func.isRequired
 }
 
 export default SearchBar
