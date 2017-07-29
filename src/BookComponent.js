@@ -35,7 +35,11 @@ class BookComponent extends Component {
               backgroundImage: `url(${this.state.imageLinks.smallThumbnail})`
             }}>
           </div>
-          <ShelfSelector updateShelf={this.props.updateShelf} shelf={this.state.shelf} id={this.state.id}/>
+          <ShelfSelector
+            searchResults={this.props.searchResults}
+            updateShelf={this.props.updateShelf}
+            shelf={this.state.shelf}
+            id={this.state.id}/>
         </div>
         <div className="book-title">{this.state.title}</div>
         <div className="book-authors">{this.state.authors[0]}</div>

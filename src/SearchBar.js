@@ -4,13 +4,6 @@ import * as Utils from './Utils'
 
 class SearchBar extends Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     'query': ''
-  //   }
-  // }
-
   componentDidMount(){
     if (this.props.urlQuery && (this.props.urlQuery !== this.props.query)) {
       console.log('component did mount, now updateQuery')
@@ -22,7 +15,7 @@ class SearchBar extends Component {
     if ((this.props.query && (prevProps.query !== this.props.query))) {
       console.log('doSearch')
       Utils.doSearch(this.props.query.trim())
-      .then((res) => (this.props.updateShelf( {'searchResults': res} )))
+      .then((shelvesObject) => this.props.updateShelf(shelvesObject))
     }
   }
 

@@ -8,7 +8,6 @@ import SearchBar from './SearchBar'
 
 class BooksApp extends React.Component {
   state = {
-    // 'test': '/search/',
     'query': '',
     'currentlyReading': [],
     'wantToRead': [],
@@ -23,18 +22,11 @@ class BooksApp extends React.Component {
     // downloading the book details only when they get required.
     BooksAPI
       .update({id: 'dummy'}, 'none')
-      .then((shelvesObject) => this.updateShelf(shelvesObject))
+      .then((shelvesObject) => this.setState(shelvesObject))
   }
 
-  updateShelf = (shelvesObject) => {
-    // function used by initialization hereabove, in ShelfSelector and in SearchBar
-    this.setState({
-      "currentlyReading": shelvesObject.currentlyReading,
-      "wantToRead": shelvesObject.wantToRead,
-      "read": shelvesObject.read,
-      "searchResults": shelvesObject.searchResults || []
-    })
-  }
+  updateShelf = (shelvesObject) => this.setState(shelvesObject)
+    // used by initialization (hereabove), in ShelfSelector and in SearchBar
 
   updateQuery = (query) => {
     this.setState({
@@ -63,7 +55,8 @@ class BooksApp extends React.Component {
                   <EachShelf
                     ShelfName="Search Results"
                     updateShelf={this.updateShelf}
-                    ThisShelf={this.state.searchResults}/>
+                    ThisShelf={this.state.searchResults}
+                    searchResults={this.state.searchResults}/>
                 </div>
               </div>
             )}/>
@@ -81,11 +74,11 @@ class BooksApp extends React.Component {
                   <EachShelf
                     ShelfName="Search Results"
                     updateShelf={this.updateShelf}
-                    ThisShelf={this.state.searchResults}/>
+                    ThisShelf={this.state.searchResults}
+                    searchResults={this.state.searchResults}/>
                 </div>
               </div>
             )}/>
-
 
             <Route exact path="/" render={() => (
               <div>
@@ -93,15 +86,18 @@ class BooksApp extends React.Component {
                     <EachShelf
                       ShelfName="Currently Reading"
                       updateShelf={this.updateShelf}
-                      ThisShelf={this.state.currentlyReading}/>
+                      ThisShelf={this.state.currentlyReading}
+                      searchResults={this.state.searchResults}/>
                     <EachShelf
                       ShelfName="Want To Read"
                       updateShelf={this.updateShelf}
-                      ThisShelf={this.state.wantToRead}/>
+                      ThisShelf={this.state.wantToRead}
+                      searchResults={this.state.searchResults}/>
                     <EachShelf
                       ShelfName="Read"
                       updateShelf={this.updateShelf}
-                      ThisShelf={this.state.read}/>
+                      ThisShelf={this.state.read}
+                      searchResults={this.state.searchResults}/>
                 </div>
               <div className="open-search">
                 <Link
