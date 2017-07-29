@@ -5,6 +5,7 @@
 - What would be a better way to implement the search bar? I find it tricky to test 'prevState' against current state, as I do now. In another attempts I had the search bar creating an infinite loop (API call > state update > API call) because of 'componentDidMount'. Maybe try further with 'shouldComponentUpdate'?
 - The back button is not aligned to the search bar!
 - 'Catch' and handle promises errors. esp. if api also return 'undefined', 403 http error without returning anything, or "no books" answer, or shelf update of book failed.
+- when typing search, if first typed letter yields a result, and following letters yield no search result, app will show the results of the first letter. It should show no result.
 - Currently the search api call is run twice for each search!
 - After a search, not possible to come back to it through browser 'back' button.
 - When showing the search result, we should also update the URL.
@@ -17,5 +18,5 @@
 - Add 'Detailed View' for the books.
 - Use stateless functions instead of classes for the react component whose only method is render(), see lesson 3.3
 - implement testing
-- debounce search typing input with lodash https://lodash.com/docs/#throttle
+- debounce search typing input with lodash https://lodash.com/docs/#throttle ?????????
 https://stackoverflow.com/questions/23123138/perform-debounce-in-react-js

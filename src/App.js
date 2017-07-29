@@ -29,6 +29,7 @@ class BooksApp extends React.Component {
     BooksAPI
       .update({id: 'dummy'}, 'none')
       .then((shelvesObject) => this.updateShelf(shelvesObject))
+      .catch((e) => ([]))
   }
 
   updateShelf = (shelvesObject) => this.setState(shelvesObject)
