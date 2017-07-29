@@ -6,14 +6,12 @@ class SearchBar extends Component {
 
   componentDidMount(){
     if (this.props.urlQuery && (this.props.urlQuery !== this.props.query)) {
-      console.log('component did mount, now updateQuery')
+      // necessary when user arrives on search screen directly typing query in url
       this.props.updateQuery(this.props.urlQuery)}
   }
 
   componentDidUpdate(prevProps, prevState){
-    console.log('component did update')
     if ((this.props.query && (prevProps.query !== this.props.query))) {
-      console.log('doSearch')
       Utils.doSearch(this.props.query.trim())
       .then((shelvesObject) => this.props.updateShelf(shelvesObject))
     }

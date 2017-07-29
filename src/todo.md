@@ -13,10 +13,11 @@
 - The Console fires up a warning when typing search query too fast: Warning: setState(...):
 "Can only update a mounted or mounting component. This usually means you called setState() on an unmounted component. This is a no-op. Please check the code for the BookComponent component."
 - Cannot limit the number of search results in BooksAPI.search, is this a backend issue?
-- In app.js, code isn't elegant, routing sections are mostly repeated between path="/search/" and path="/search/:urlQuery" . Any better way to do this?
+- In app.js, code is not 'Don't Repeat Yourself', routing sections are mostly repeated between path="/search/" and path="/search/:urlQuery" . Any better way to do this?
 - Use 'proptypes'.
 - Allow for offline browsing of the books. (persistent storage)
 - Add 'Detailed View' for the books.
 - Use stateless functions instead of classes for the react component whose only method is render(), see lesson 3.3
 - implement testing
-- debounce search typing input with lodash (https://lodash.com/docs/#throttle)
+- debounce search typing input with lodash https://lodash.com/docs/#throttle
+https://stackoverflow.com/questions/23123138/perform-debounce-in-react-js

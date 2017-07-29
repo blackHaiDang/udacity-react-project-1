@@ -8,6 +8,7 @@ class EachShelf extends Component {
         <h2 className="bookshelf-title">{this.props.ShelfName}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
+            {/* {console.log(this.props.ThisShelf)} */}
             {this.props.ThisShelf.map((id) => (
               <li key={id}>
                 <BookComponent

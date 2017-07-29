@@ -15,6 +15,12 @@ class BooksApp extends React.Component {
     'searchResults': []
     }
 
+  //  shelvesLayout = [
+  //   {label: 'currentlyReading', shelfName: 'Currently Reading'},
+  //   {label: 'wantToRead', shelfName: 'Want To Read'},
+  //   {label: 'read', shelfName: 'Read'}
+  // ]
+
   componentDidMount() {
     // an UPDATE call to place a "dummy" book into the "none" shelf,
     // so that the App only receives the book IDs for each shelf.
@@ -95,6 +101,21 @@ class BooksApp extends React.Component {
                       updateShelf={this.updateShelf}
                       ThisShelf={this.state.read}/>
                 </div>
+
+              	{/* <div className="list-books-content">
+                  {this.shelvesLayout.map( (shelf, index) => (
+              	    <EachShelf
+                      key={index}
+              	      ShelfName={shelf.shelfName}
+              	      updateShelf={this.updateShelf}
+              	      ThisShelf={'this.state.' + shelf.label}/>
+                      // this is a try to factorize, but doesn't work
+                      // ThisShelf evaluates to the string "this.state.currentlyReading"
+                      // but I need the *content* of "this.state.currentlyReading"!
+                  	)
+                  )}
+              	</div> */}
+
               <div className="open-search">
                 <Link
                   to={`/search/${this.state.query}`}
