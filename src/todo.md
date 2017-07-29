@@ -3,8 +3,7 @@
 - catch error of backend then send message
 - After adding a book from the search page, the search results page becomes empty! And it's even impossible to run the same search again!
 - What would be a better way to implement the search bar? I find it tricky to test 'prevState' against current state, as I do now. In another attempts I had the search bar creating an infinite loop (API call > state update > API call) because of 'componentDidMount'. Maybe try further with 'shouldComponentUpdate'?
-- Show the second author for relevant books!
-- The Search Bar covers the App name!
+- The back button is not aligned to the search bar!
 - 'Catch' and handle promises errors. esp. if api also return 'undefined', 403 http error without returning anything, or "no books" answer, or shelf update of book failed.
 - Currently the search api call is run twice for each search!
 - After a search, not possible to come back to it through browser 'back' button.
