@@ -1,4 +1,4 @@
-import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from '../utils/BooksAPI'
 // TODO import only what's really required
 
 export const doSearch = (query) =>

@@ -2,9 +2,9 @@ import React from 'react'
 import {Route, Link} from 'react-router-dom'
 // import {Switch} from 'react-router-dom'
 import './App.css'
-import * as BooksAPI from './BooksAPI'
-import EachShelf from './EachShelf'
-import SearchBar from './SearchBar'
+import * as BooksAPI from './utils/BooksAPI'
+import EachShelf from './components/EachShelf'
+import SearchBar from './components/SearchBar'
 
 class BooksApp extends React.Component {
   state = {
@@ -19,10 +19,10 @@ class BooksApp extends React.Component {
     // an UPDATE call to place a "dummy" book into the "none" shelf,
     // so that the App only receives the book IDs for each shelf.
     // In earlier version I was using BooksAPI.getAll, but I prefer
-    // downloading the book details only when they get required.
+    // downloading the books details only when they get required.
     BooksAPI
       .update({id: 'dummy'}, 'none')
-      .then((shelvesObject) => this.setState(shelvesObject))
+      .then((shelvesObject) => this.updateShelf(shelvesObject))
   }
 
   updateShelf = (shelvesObject) => this.setState(shelvesObject)
@@ -74,8 +74,8 @@ class BooksApp extends React.Component {
                   <EachShelf
                     ShelfName="Search Results"
                     updateShelf={this.updateShelf}
-                    ThisShelf={this.state.searchResults}
-                    searchResults={this.state.searchResults}/>
+                    ThisShelf={this.state.searchResults}/>
+                    {/* searchResults={this.state.searchResults}/> */}
                 </div>
               </div>
             )}/>
@@ -86,18 +86,18 @@ class BooksApp extends React.Component {
                     <EachShelf
                       ShelfName="Currently Reading"
                       updateShelf={this.updateShelf}
-                      ThisShelf={this.state.currentlyReading}
-                      searchResults={this.state.searchResults}/>
+                      ThisShelf={this.state.currentlyReading}/>
+                      {/* searchResults={this.state.searchResults}/> */}
                     <EachShelf
                       ShelfName="Want To Read"
                       updateShelf={this.updateShelf}
-                      ThisShelf={this.state.wantToRead}
-                      searchResults={this.state.searchResults}/>
+                      ThisShelf={this.state.wantToRead}/>
+                      {/* searchResults={this.state.searchResults}/> */}
                     <EachShelf
                       ShelfName="Read"
                       updateShelf={this.updateShelf}
-                      ThisShelf={this.state.read}
-                      searchResults={this.state.searchResults}/>
+                      ThisShelf={this.state.read}/>
+                      {/* searchResults={this.state.searchResults}/> */}
                 </div>
               <div className="open-search">
                 <Link

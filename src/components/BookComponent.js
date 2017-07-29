@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from '../utils/BooksAPI'
 import ShelfSelector from './ShelfSelector'
 
 class BookComponent extends Component {
@@ -36,7 +36,7 @@ class BookComponent extends Component {
             }}>
           </div>
           <ShelfSelector
-            searchResults={this.props.searchResults}
+            // searchResults={this.props.searchResults}
             updateShelf={this.props.updateShelf}
             shelf={this.state.shelf}
             id={this.state.id}/>

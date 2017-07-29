@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import * as Utils from './Utils'
+import * as Utils from '../utils/Utils'
 
 class SearchBar extends Component {
 
