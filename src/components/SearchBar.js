@@ -38,7 +38,7 @@ class SearchBar extends Component {
 
 SearchBar.propTypes = {
   query: PropTypes.string.isRequired,
-  urlQuery: PropTypes.string.isRequired,
+  urlQuery: PropTypes.string,
   updateQuery: PropTypes.func.isRequired,
   updateShelf: PropTypes.func.isRequired
 }
