@@ -10,19 +10,22 @@ I built this project as part of the [React Udacity NanoDegree] (https://www.udac
 `www.myread.xiaoju.io`
 
 ### Locally
-0. Pre-requisites: git, node.js and npm are installed on you local machine.
-0. clone the files to a local folder:
+1. Pre-requisites: git, node.js and npm are installed on you local machine.
+2. clone the files to a local folder:
 
   `git clone https://github.com/xiaoju/react_nd-01-myreads.git`
-0. install the app:
+
+3. install the app:
 
   `cd react_nd-01-myreads`
 
   `npm Install`
-0. run the app:
+
+4. run the app:
 
   `npm start`
-0. Your internet browser will open up the app automatically, a local node_js server serving the app at http://localhost:3000/ (possibly with another port number). Backend server is hosted by Udacity.
+
+5. Your internet browser will open up the app automatically, a local node_js server serving the app at http://localhost:3000/ (possibly with another port number). Backend server is hosted by Udacity.
 
 ## App architecture
 
@@ -30,20 +33,16 @@ I built this project as part of the [React Udacity NanoDegree] (https://www.udac
 This project is mostly written in JavaScript, leveraging the [React](https://facebook.github.io/react/) framework.
 It was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
-### React components
-`components_overview.ppt` shows a visual description of the app components and their interrelations (composition, states, props, function calls).
-
 ### Files
 ```
 +--public/    
  |-- index.html
  |-- favicon.ico - React Icon
 +-- src/
- +-- components/ - React components, see xxxxxx
-  |-- BookComponent.js
-  |-- EachShelf.js
-  |-- SearchBar.js
-  |-- ShelfSelector.js  
+ +-- components/ - React components
+  |-- SearchBar.js - render the searchBar
+  |-- EachShelf.js - render the shelves: read, currentlyReading, wantToRead and searchResults
+  |-- BookComponent.js - render the book thumbnails: image, title, author, etc
  +-- icons/
   |-- add.svg
   |-- arrow-back.svg
@@ -54,7 +53,6 @@ It was bootstrapped with [Create React App](https://github.com/facebookincubator
   +-- utils/ - utility files used by several React components
    |-- BooksAPI.js - A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
    |-- Utils.js - A simple layer on top of BooksAPI.js
- |-- components_overview.ppt - the app components and their interrelations
  |-- index.js - Used for DOM rendering only.
  |-- index.css - Global styles.
  |-- todo.md - untracked list of issues (submit new bugs on 'GitHub Issues' only)

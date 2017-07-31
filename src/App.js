@@ -21,16 +21,21 @@ class BooksApp extends React.Component {
   // ]
 
   componentDidMount() {
-    // an UPDATE call to place a "dummy" book into the "none" shelf,
-    // so that the App only receives the book IDs for each shelf.
-    // In earlier version I was using BooksAPI.getAll, but I prefer
+    // This is an 'update' API call to place a "dummy" book into the "none" shelf,
+    // API answers with updated view of our shelves (Book IDs only, sorted per shelf)
+    // I didn't want to use BooksAPI.getAll because it outputs a very big file
+    // that I didn't want to bother filter down or carry around as props.
+    // The app state is mostly made of a list of book ids,
     // downloading the books details only when they get required.
     BooksAPI
       .update({id: 'dummy'}, 'none')
       .then((shelvesObject) => this.updateShelf(shelvesObject))
-      .catch((e) => ([]))
+      .catch((e) => {
+        console.log(e);
+        return []})
   }
 
+  // updateShelf = (shelvesObject) => this.setState(shelvesObject)
   updateShelf = (shelvesObject) => this.setState(shelvesObject)
     // used by initialization (hereabove), in ShelfSelector and in SearchBar
 
@@ -52,10 +57,10 @@ class BooksApp extends React.Component {
             path="/search/"
             render={() => (
               <div>
-                  <SearchBar
-                    query={this.state.query}
-                    updateQuery={this.updateQuery}
-                    updateShelf={this.updateShelf}/>
+                <SearchBar
+                  query={this.state.query}
+                  updateQuery={this.updateQuery}
+                  updateShelf={this.updateShelf}/>
                 <div className="search-books-results">
                   <EachShelf
                     ShelfName="Search Results"
@@ -125,7 +130,6 @@ class BooksApp extends React.Component {
                   </div>
                 </div>
               )}/>
-
         </div>
       </div>
     )
