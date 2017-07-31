@@ -1,6 +1,5 @@
 import React from 'react'
 import {Route, Link} from 'react-router-dom'
-// import {Switch} from 'react-router-dom'
 import './App.css'
 import * as BooksAPI from './utils/BooksAPI'
 import EachShelf from './components/EachShelf'
@@ -48,16 +47,15 @@ class BooksApp extends React.Component {
         </div>
         <div className="list-books">
 
-          {/* <Switch> */}
-
-            <Route exact path="/search/" render={() => (
-              <div className="random-name">
-                <div className="search-books">
+          <Route
+            exact
+            path="/search/"
+            render={() => (
+              <div>
                   <SearchBar
                     query={this.state.query}
                     updateQuery={this.updateQuery}
                     updateShelf={this.updateShelf}/>
-                </div>
                 <div className="search-books-results">
                   <EachShelf
                     ShelfName="Search Results"
@@ -68,15 +66,15 @@ class BooksApp extends React.Component {
               </div>
             )}/>
 
-            <Route path="/search/:urlQuery" render={({match}) => (
-              <div className="random-name">
-                <div className="search-books">
+          <Route
+            path="/search/:urlQuery"
+            render={({match}) => (
+              <div>
                   <SearchBar
                     urlQuery={match.params.urlQuery}
                     query={this.state.query}
                     updateQuery={this.updateQuery}
                     updateShelf={this.updateShelf}/>
-                </div>
                 <div className="search-books-results">
                   <EachShelf
                     ShelfName="Search Results"
@@ -86,46 +84,47 @@ class BooksApp extends React.Component {
               </div>
             )}/>
 
-            <Route exact path="/" render={() => (
-              <div>
-                <div className="list-books-content">
-                    <EachShelf
-                      ShelfName="Currently Reading"
-                      updateShelf={this.updateShelf}
-                      ThisShelf={this.state.currentlyReading}/>
-                    <EachShelf
-                      ShelfName="Want To Read"
-                      updateShelf={this.updateShelf}
-                      ThisShelf={this.state.wantToRead}/>
-                    <EachShelf
-                      ShelfName="Read"
-                      updateShelf={this.updateShelf}
-                      ThisShelf={this.state.read}/>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <div>
+                  <div className="list-books-content">
+                      <EachShelf
+                        ShelfName="Currently Reading"
+                        updateShelf={this.updateShelf}
+                        ThisShelf={this.state.currentlyReading}/>
+                      <EachShelf
+                        ShelfName="Want To Read"
+                        updateShelf={this.updateShelf}
+                        ThisShelf={this.state.wantToRead}/>
+                      <EachShelf
+                        ShelfName="Read"
+                        updateShelf={this.updateShelf}
+                        ThisShelf={this.state.read}/>
+                  </div>
+
+                	{/* <div className="list-books-content">
+                    {this.shelvesLayout.map( (shelf, index) => (
+                	    <EachShelf
+                        key={index}
+                	      ShelfName={shelf.shelfName}
+                	      updateShelf={this.updateShelf}
+                	      ThisShelf={'this.state.' + shelf.label}/>
+                        // this is a try to factorize, but doesn't work
+                        // ThisShelf evaluates to the string "this.state.currentlyReading"
+                        // but I need the *content* of "this.state.currentlyReading"!
+                    	)
+                    )}
+                	</div> */}
+
+                  <div className="open-search">
+                    <Link
+                      to={`/search/${this.state.query}`}
+                      >Add a book</Link>
+                  </div>
                 </div>
-
-              	{/* <div className="list-books-content">
-                  {this.shelvesLayout.map( (shelf, index) => (
-              	    <EachShelf
-                      key={index}
-              	      ShelfName={shelf.shelfName}
-              	      updateShelf={this.updateShelf}
-              	      ThisShelf={'this.state.' + shelf.label}/>
-                      // this is a try to factorize, but doesn't work
-                      // ThisShelf evaluates to the string "this.state.currentlyReading"
-                      // but I need the *content* of "this.state.currentlyReading"!
-                  	)
-                  )}
-              	</div> */}
-
-              <div className="open-search">
-                <Link
-                  to={`/search/${this.state.query}`}
-                  >Add a book</Link>
-                </div>
-              </div>
-            )}/>
-
-          {/* </Switch> */}
+              )}/>
 
         </div>
       </div>
