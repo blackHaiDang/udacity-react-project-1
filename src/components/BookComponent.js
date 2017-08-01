@@ -7,6 +7,7 @@ class BookComponent extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    console.log('BookComponent: creating initial state of book with "none" state.')
     this.state = {
       id: this.props.id,
       title: '',
@@ -14,8 +15,9 @@ class BookComponent extends Component {
       imageLinks: {smallThumbnail: ''},
       shelf: 'none'
       // Initial value of 'shelf' is 'none'.
-      // If book belongs to a shelf, value will be updated as soon as app.js state updates with the shelf content
-      //
+      // If book belongs to a shelf, and app is showing shelves,
+      // then shelf value will be updated as soon as app.js state updates with the shelf content
+      // If we are not showing the shelves, but the searchResults, then xxx
     };
   }
 
@@ -23,6 +25,7 @@ class BookComponent extends Component {
     BooksAPI
       .get(this.props.id)
       .then(res => this.setState(res))
+    console.log('BookComponent did mount, state was set based on get(book), for each book.')
     }
 
   handleChange(event) {
@@ -33,7 +36,7 @@ class BookComponent extends Component {
       .update({'id': this.state.id}, newShelf)   // API call
       .then((shelvesObject) => this.props.updateShelf(shelvesObject))
       // NB this updates the currentlyReading, read and wantToRead shelves, but not the searchResults shelf.
-      // This is why next line we need to manually upate the shelf state of this book
+      // This is why we had to do this.setState({shelf: newShelf}) a few lines earlier to manually upate the shelf state of this book
       // so that the book status is shown correctly in the searchResults shelf
       .catch(() => (this.setState({shelf: previousShelf})))        // rollback if API call failed
   }

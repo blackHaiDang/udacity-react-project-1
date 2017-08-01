@@ -27,24 +27,29 @@ class BooksApp extends React.Component {
     // that I didn't want to bother filter down or carry around as props.
     // The app state is mostly made of a list of book ids,
     // downloading the books details only when they get required.
+    // format of 'shelvesObject' here below:
+    // {"currentlyReading": ["nggnmAEACAAJ","sJf1vQAACAAJ"],"wantToRead": ["74XNzF_al3MC"],"read": ["jAUODAAAQBAJ","IOejDAAAQBAJ","1wy49i-gQjIC"]}
     BooksAPI
       .update({id: 'dummy'}, 'none')
       .then((shelvesObject) => this.updateShelf(shelvesObject))
+      .then(() => console.log('App: component did mount, book shelves were just updated.'))
       .catch((e) => {
         console.log(e);
         return []})
   }
 
   // updateShelf = (shelvesObject) => this.setState(shelvesObject)
-  updateShelf = (shelvesObject) => this.setState(shelvesObject)
-    // used by initialization (hereabove), in ShelfSelector and in SearchBar
+  updateShelf = (shelvesObject) => {this.setState(shelvesObject); console.log('updateshelf!')}
+    // used by initialization (hereabove), in BookComponent and in SearchBar
 
   updateQuery = (query) => {
-    this.setState({
-      'query': query
-    })}
+    console.log(query);
+    // this.setState({'query': query})}
+    debounce(this.setState({'query': query}), 200)
+  }
 
   render() {
+
     return (
       <div className="app">
         <div className="list-books-title">
@@ -65,8 +70,7 @@ class BooksApp extends React.Component {
                   <EachShelf
                     ShelfName="Search Results"
                     updateShelf={this.updateShelf}
-                    ThisShelf={this.state.searchResults}
-                    searchResults={this.state.searchResults}/>
+                    ThisShelf={this.state.searchResults}/>
                 </div>
               </div>
             )}/>

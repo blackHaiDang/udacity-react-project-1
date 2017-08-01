@@ -12,13 +12,17 @@ class SearchBar extends Component {
   }
 
   componentDidUpdate(prevProps, prevState){
+    console.log('SearchBar: component did update, will doSearch if conditions met')
     if ((this.props.query && (prevProps.query !== this.props.query))) {
+      console.log("calling doSearch");
       Utils.doSearch(this.props.query.trim())
       .then((shelvesObject) => this.props.updateShelf(shelvesObject))
     }
+    else {console.log("didn't doSearch...")}
   }
 
   render() {
+    // const updateQueryDebounced = debounce(this.props.updateQuery, 200);
     return (
         <div className="search-books">
           <div className='search-books-bar'>
