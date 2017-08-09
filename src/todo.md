@@ -6,7 +6,6 @@
 - The back button is not aligned to the search bar!
 - 'Catch' and handle promises errors. esp. if api also return 'undefined', 403 http error without returning anything, or "no books" answer, or shelf update of book failed.
 - when typing search, if first typed letter yields a result, and following letters yield no search result, app will show the results of the first letter. It should show no result.
-- Currently the search api call is run twice for each search!
 - After a search, not possible to come back to it through browser 'back' button.
 - When showing the search result, we should also update the URL.
 - Show a message if the search yielded no result. Show "searching" when waiting for search answer.
@@ -20,3 +19,4 @@
 - implement testing
 - debounce search typing input with lodash https://lodash.com/docs/#throttle ?????????
 https://stackoverflow.com/questions/23123138/perform-debounce-in-react-js
+- race condition of search results "create a suggestion manager — a single source of truth to manage the state of the query suggestions. It was aware of a currently pending AJAX request, and when the user typed something new, the pending AJAX request would be canceled before a new request was issued, so only a single response handler at a time would ever be able to trigger a UI state update."

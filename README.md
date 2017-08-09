@@ -2,12 +2,12 @@
 # MyRead
 
 MyRead is a webapp to keep track of the books you read, want to read, or are currently reading. The books information is looked up from a public database.
-I built this project as part of the [React Udacity NanoDegree](https://www.udacity.com/course/react-nanodegree--nd019) [_MOOC_](https://en.wikipedia.org/wiki/Massive_open_online_course), of which I joined the first cohort starting july 2017.
+I built this project as part of the [React Udacity NanoDegree](https://www.udacity.com/course/react-nanodegree--nd019) [_MOOC_](https://en.wikipedia.org/wiki/Massive_open_online_course), of which I joined the first cohort starting july 2017. This was the first 'project' out of three.
 
 ## Try the app
 
 ### Online
-`www.myread.xiaoju.io`
+`myread.xiaoju.io`
 
 ### Locally
 1. Pre-requisites: git, node.js and npm are installed on you local machine.
@@ -248,7 +248,7 @@ myRequest.send(body);
 
 ## Contributing
 - As this project passed Udacity review with release 0.1.0, I'm not working on it anymore. However, feel free to contact me per email to `me@xiaoju.io` regarding any comments or suggestions.
-- If you would like to work deeper on this app, I sugget you take the excellent [`React Udacity NanoDegree`](https://www.udacity.com/course/react-nanodegree--nd019) and create your own version of the project based on [Udacity's repository](https://github.com/udacity/reactnd-project-myreads-starter).
+- If you would like to work deeper on this app, I suggest you take the excellent [`React Udacity NanoDegree`](https://www.udacity.com/course/react-nanodegree--nd019) and create your own version of the project based on [Udacity's repository](https://github.com/udacity/reactnd-project-myreads-starter).
 - Releases are named according to [_semantic versioning_](http://semver.org/) guidelines.
 
 ## License
