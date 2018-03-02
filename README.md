@@ -38,11 +38,20 @@ Please be patient with loading time: as the app is hosted on a [free tier Heroku
 
 ### Deploy on Heroku
 
-* Follow [instructions](https://devcenter.heroku.com/articles/git#creating-a-heroku-remote) from Heroku:
-  * create a new app using Heroku dashboard, selecting 'Git deployment' option.
-  * setup the Heroku remote: `heroku git:remote -a name-of-the-app`
-  * set the create-react-app buildpack: `heroku buildpacks:set https://github.com/mars/create-react-app-buildpack.git`
-  * push to Heroku remote: `git push heroku master`
+* As per [Heroku instructions](https://devcenter.heroku.com/articles/git#creating-a-heroku-remote), create a new app using Heroku dashboard, selecting 'Git deployment' option.
+* setup the Heroku remote:
+
+  `heroku git:remote -a name-of-the-app`
+
+* set the create-react-app buildpack:
+
+  `heroku buildpacks:set https://github.com/mars/create-react-app-buildpack.git`
+
+* push to Heroku remote:
+
+  `git push heroku master`
+
+* redirect the app from herokuapp.com domain to a personal domain, following [namecheap instructions](https://www.namecheap.com/support/knowledgebase/article.aspx/9737/2208/pointing-a-domain-to-the-heroku-app).
 
 ## Contributing
 
@@ -55,7 +64,7 @@ Please be patient with loading time: as the app is hosted on a [free tier Heroku
 
 ### Language and framework
 
-This project is mostly written in JavaScript, leveraging the [React](https://facebook.github.io/react/) framework.
+This project is written in JavaScript, leveraging the [React](https://facebook.github.io/react/) framework.
 It was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). Find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ### Files
