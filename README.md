@@ -36,6 +36,14 @@ Please be patient with loading time: as the app is hosted on a [free tier Heroku
 
 5. Your internet browser will open up the app automatically, a local node_js server serving the app at http://localhost:3000/ (possibly with another port number). The backend server is hosted by Udacity, see below for details.
 
+### Deploy on Heroku
+
+* Follow [instructions](https://devcenter.heroku.com/articles/git#creating-a-heroku-remote) from Heroku:
+  * create a new app using Heroku dashboard, selecting 'Git deployment' option.
+  * setup the Heroku remote: `heroku git:remote -a name-of-the-app`
+  * set the create-react-app buildpack: `heroku buildpacks:set https://github.com/mars/create-react-app-buildpack.git`
+  * push to Heroku remote: `git push heroku master`
+
 ## Contributing
 
 * As this project passed Udacity review with release 0.1.0, I'm not working on it anymore. However, feel free to contact me per email to `info@xiaoju.io` regarding any comments or suggestions.
