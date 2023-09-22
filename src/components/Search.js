@@ -8,7 +8,6 @@ class SearchBar extends Component {
 
   componentDidMount(){
     if (this.props.urlQuery && (this.props.urlQuery !== this.props.query)) {
-      // necessary when user arrives on search screen directly typing query in url
       this.props.updateQuery(this.props.urlQuery)}
   }
 
@@ -23,7 +22,6 @@ class SearchBar extends Component {
   }
 
   render() {
-    // const updateQueryDebounced = debounce(this.props.updateQuery, 200);
     return (
         <div className="search-books">
           <div className='search-books-bar'>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import BookComponent from './BookComponent'
+import BookComponent from './Book'
 
 class EachShelf extends Component {
   render() {

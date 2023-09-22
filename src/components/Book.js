@@ -14,10 +14,6 @@ class BookComponent extends Component {
       authors: [''],
       imageLinks: {smallThumbnail: ''},
       shelf: 'none'
-      // Initial value of 'shelf' is 'none'.
-      // If book belongs to a shelf, and app is showing shelves,
-      // then shelf value will be updated as soon as app.js state updates with the shelf content
-      // If we are not showing the shelves, but the searchResults, then xxx
     };
   }
 
@@ -30,15 +26,12 @@ class BookComponent extends Component {
 
   handleChange(event) {
     let newShelf=event.target.value
-    let previousShelf=this.state.shelf  // so we can rollback the change later if API call fails
-    this.setState({shelf: newShelf})   // hoping API call won't fail
+    let previousShelf=this.state.shelf
+    this.setState({shelf: newShelf})
     BooksAPI
       .update({'id': this.state.id}, newShelf)   // API call
       .then((shelvesObject) => this.props.updateShelf(shelvesObject))
-      // NB this updates the currentlyReading, read and wantToRead shelves, but not the searchResults shelf.
-      // This is why we had to do this.setState({shelf: newShelf}) a few lines earlier to manually upate the shelf state of this book
-      // so that the book status is shown correctly in the searchResults shelf
-      .catch(() => (this.setState({shelf: previousShelf})))        // rollback if API call failed
+      .catch(() => (this.setState({shelf: previousShelf})))
   }
 
   render(){
